@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:islami_flutter/home/hadeth_tab.dart';
+import 'package:islami_flutter/home/hadeth/hadeth_tab.dart';
 import 'package:islami_flutter/home/quran/quran_tab.dart';
-import 'package:islami_flutter/home/radio_tab.dart';
-import 'package:islami_flutter/home/tasbeeh_tab.dart';
+import 'package:islami_flutter/home/radio/radio_tab.dart';
+import 'package:islami_flutter/home/tasbeeh/tasbeeh_tab.dart';
+
+import 'home/settings/setting_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home_screen';
@@ -61,6 +63,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       AssetImage('assets/images/radio.png'),
                     ),
                     label: 'Radio'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.settings_suggest_outlined),
+                    label: 'Setting'),
               ],
             ),
           ),
@@ -70,5 +75,11 @@ class _HomeScreenState extends State<HomeScreen> {
     ); // stack
   }
 
-  List<Widget> tabs = [QuranTab(), HadethTab(), TasbehTab(), RadioTab()];
+  List<Widget> tabs = [
+    QuranTab(),
+    HadethTab(),
+    TasbehTab(),
+    RadioTab(),
+    SettingsTab()
+  ];
 }
