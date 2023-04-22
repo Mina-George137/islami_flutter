@@ -7,5 +7,6 @@
 "sura_name": "Sura Name",
 "hadeth_name": "Hadeth Name",
 "language" : "Languages",
-"settings" : "Settings"
+"settings" : "Settings",
+"number_tasbehat" : "Number of tasbehat"
 }

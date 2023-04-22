@@ -7,5 +7,6 @@
 "sura_name": "اسم السورة",
 "hadeth_name": "اسم الحديث",
 "language" : "اللغة",
-"settings" : "الاعدادات"
+"settings" : "الاعدادات",
+"number_tasbehat" : "عدد التسبيحات"
 }

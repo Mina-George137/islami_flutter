@@ -24,6 +24,8 @@ class MyTheme {
           fontSize: 25, fontWeight: FontWeight.w300, color: colorBlack),
       subtitle2: TextStyle(
           fontSize: 20, fontWeight: FontWeight.normal, color: colorBlack),
+      headline4: TextStyle(
+          fontSize: 25, fontWeight: FontWeight.bold, color: colorWhite),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: lightPrimary,
