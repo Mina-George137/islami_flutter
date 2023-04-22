@@ -18,6 +18,8 @@ class MyTheme {
           fontSize: 30, fontWeight: FontWeight.bold, color: colorBlack),
       headline2: TextStyle(
           fontSize: 25, fontWeight: FontWeight.w400, color: colorBlack),
+      headline3: TextStyle(
+          fontSize: 25, fontWeight: FontWeight.w400, color: lightPrimary),
       subtitle1: TextStyle(
           fontSize: 25, fontWeight: FontWeight.w300, color: colorBlack),
       subtitle2: TextStyle(

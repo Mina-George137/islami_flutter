@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami_flutter/home/hadeth/hadeth_tab.dart';
 import 'package:islami_flutter/home/quran/quran_tab.dart';
 import 'package:islami_flutter/home/radio/radio_tab.dart';
@@ -30,7 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             backgroundColor: Colors.transparent,
-            title: Text('Islami', style: Theme.of(context).textTheme.headline1),
+            title: Text(AppLocalizations.of(context)!.app_title,
+                style: Theme.of(context).textTheme.headline1),
           ),
           bottomNavigationBar: Theme(
             data: Theme.of(context)
@@ -46,26 +48,26 @@ class _HomeScreenState extends State<HomeScreen> {
                   icon: ImageIcon(
                     AssetImage('assets/images/quran.png'),
                   ),
-                  label: 'Quran',
+                  label: '${AppLocalizations.of(context)!.quran}',
                 ),
                 BottomNavigationBarItem(
                     icon: ImageIcon(
                       AssetImage('assets/images/hadeth.png'),
                     ),
-                    label: 'Hadeth'),
+                    label: '${AppLocalizations.of(context)!.hadeth}'),
                 BottomNavigationBarItem(
                     icon: ImageIcon(
                       AssetImage('assets/images/sebha.png'),
                     ),
-                    label: 'Tasbeh'),
+                    label: '${AppLocalizations.of(context)!.tasbeh}'),
                 BottomNavigationBarItem(
                     icon: ImageIcon(
                       AssetImage('assets/images/radio.png'),
                     ),
-                    label: 'Radio'),
+                    label: '${AppLocalizations.of(context)!.radio}'),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.settings_suggest_outlined),
-                    label: 'Setting'),
+                    label: '${AppLocalizations.of(context)!.settings}'),
               ],
             ),
           ),
