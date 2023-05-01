@@ -26,6 +26,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
             child: InkWell(
                 onTap: () {
                   provider.changeLanguage('en');
+                  provider.setPrefIsEnglish(true);
                 },
                 child: provider.isEnglish()
                     ? getSelectedItem(AppLocalizations.of(context)!.english)
@@ -37,6 +38,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
             child: InkWell(
               onTap: () {
                 provider.changeLanguage('ar');
+                provider.setPrefIsEnglish(false);
               },
               child: provider.isEnglish()
                   ? getUnselectedWidget(AppLocalizations.of(context)!.arabic)
