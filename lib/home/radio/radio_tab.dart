@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RadioTab extends StatelessWidget {
   @override
@@ -10,7 +11,7 @@ class RadioTab extends StatelessWidget {
           children: [
             Image.asset('assets/images/radio_large.png'),
             Text(
-              'The Quran Radio',
+              AppLocalizations.of(context)!.quranRadio,
               style: Theme.of(context).textTheme.headline2,
             ),
             Row(

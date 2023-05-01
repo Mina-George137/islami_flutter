@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami_flutter/provider/app_config_provider.dart';
+import 'package:provider/provider.dart';
 
 class TasbehTab extends StatefulWidget {
   @override
@@ -21,6 +23,8 @@ class _TasbehTabState extends State<TasbehTab> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     return Container(
       child: Center(
         child: Column(
@@ -30,12 +34,19 @@ class _TasbehTabState extends State<TasbehTab> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 40.0),
-                  child: Image.asset('assets/images/head_of_sebha.png'),
+                  child: provider.isDark()
+                      ? Image.asset('assets/images/head_of_sebha_dark.png')
+                      : Image.asset('assets/images/head_of_sebha.png'),
                 ),
-                Transform.rotate(
-                  angle: _angle * (3.14 / 180),
-                  child: Image.asset(
-                    'assets/images/body_of_sebha.png',
+                InkWell(
+                  onTap: () {
+                    checkTasbeh();
+                  },
+                  child: Transform.rotate(
+                    angle: _angle * (3.14 / 180),
+                    child: provider.isDark()
+                        ? Image.asset('assets/images/body_of_sebha_dark.png')
+                        : Image.asset('assets/images/body_of_sebha.png'),
                   ),
                 ),
               ],
@@ -51,23 +62,22 @@ class _TasbehTabState extends State<TasbehTab> {
               padding: EdgeInsets.all(10),
               margin: EdgeInsets.only(bottom: 15),
               decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
+                  color: provider.isDark()
+                      ? Theme.of(context).primaryColorDark
+                      : const Color(0xFFB7935F),
                   borderRadius: BorderRadius.circular(12)),
               child: Text('$counter',
                   style: Theme.of(context).textTheme.subtitle1),
             ),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.all(15),
-                  primary: Theme.of(context).primaryColor,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                ),
-                onPressed: checkTasbeh,
+            Container(
+                padding: EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(30)),
                 child: Text(
                   '${tasbehat[index % 5]}',
                   style: Theme.of(context).textTheme.headline4,
-                ))
+                )),
           ],
         ),
       ),

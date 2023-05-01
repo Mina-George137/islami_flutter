@@ -4,6 +4,8 @@ import 'package:islami_flutter/home/hadeth/hadeth_tab.dart';
 import 'package:islami_flutter/home/quran/quran_tab.dart';
 import 'package:islami_flutter/home/radio/radio_tab.dart';
 import 'package:islami_flutter/home/tasbeeh/tasbeeh_tab.dart';
+import 'package:islami_flutter/provider/app_config_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'home/settings/setting_tab.dart';
 
@@ -19,14 +21,22 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Stack(
       children: [
-        Image.asset(
-          'assets/images/main_background.png',
-          width: double.infinity,
-          height: double.infinity,
-          fit: BoxFit.fill,
-        ),
+        provider.isDark()
+            ? Image.asset(
+                'assets/images/bg_dark.png',
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.fill,
+              )
+            : Image.asset(
+                'assets/images/main_background.png',
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.fill,
+              ),
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
@@ -35,8 +45,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: Theme.of(context).textTheme.headline1),
           ),
           bottomNavigationBar: Theme(
-            data: Theme.of(context)
-                .copyWith(canvasColor: Theme.of(context).primaryColor),
+            data: provider.isDark()
+                ? Theme.of(context)
+                    .copyWith(canvasColor: Theme.of(context).primaryColorDark)
+                : Theme.of(context)
+                    .copyWith(canvasColor: Theme.of(context).primaryColor),
             child: BottomNavigationBar(
               currentIndex: selectedIndex,
               onTap: (index) {

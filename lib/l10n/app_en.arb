@@ -8,5 +8,11 @@
 "hadeth_name": "Hadeth Name",
 "language" : "Languages",
 "settings" : "Settings",
-"number_tasbehat" : "Number of tasbehat"
+"number_tasbehat" : "Number of tasbehat",
+"english" : "English",
+"arabic" : "Arabic",
+"light": "Light",
+"dark": "Dark",
+"theme" : "Theme",
+"quranRadio" : "The Quran Radio"
 }

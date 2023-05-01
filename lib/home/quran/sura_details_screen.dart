@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami_flutter/home/quran/sura_name.dart';
 import 'package:islami_flutter/my_theme.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/app_config_provider.dart';
 
 class SuraDetailsScreen extends StatefulWidget {
   static const String routeName = 'sure_details_screen';
@@ -15,6 +18,7 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     var args = ModalRoute.of(context)?.settings.arguments as SuraDetailsArgs;
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
@@ -24,12 +28,19 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
 
     return Stack(
       children: [
-        Image.asset(
-          'assets/images/main_background.png',
-          width: double.infinity,
-          height: double.infinity,
-          fit: BoxFit.fill,
-        ),
+        provider.isDark()
+            ? Image.asset(
+                'assets/images/bg_dark.png',
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.fill,
+              )
+            : Image.asset(
+                'assets/images/main_background.png',
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.fill,
+              ),
         Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
@@ -45,23 +56,25 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
               width: width * 0.9,
               height: height * 0.9,
               decoration: BoxDecoration(
-                  color: MyTheme.colorWhite,
+                  color: provider.isDark()
+                      ? Theme.of(context).primaryColorDark
+                      : MyTheme.colorWhite,
                   borderRadius: BorderRadius.circular(24)),
               child: (verses.isEmpty)
                   ? Center(child: CircularProgressIndicator())
                   : ListView.builder(
-                      itemBuilder: (context, index) {
-                        return Container(
-                          padding: EdgeInsets.all(8),
-                          child: Text(
-                            verses[index] + '(${index + 1})',
-                            style: Theme.of(context).textTheme.subtitle2,
-                            textDirection: TextDirection.rtl,
-                          ),
-                        );
-                      },
-                      itemCount: verses.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    padding: EdgeInsets.all(8),
+                    child: Text(
+                      verses[index] + '(${index + 1})',
+                      style: Theme.of(context).textTheme.subtitle2,
+                      textDirection: TextDirection.rtl,
                     ),
+                  );
+                },
+                itemCount: verses.length,
+              ),
             )),
       ],
     );

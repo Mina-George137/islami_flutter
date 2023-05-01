@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:islami_flutter/home/hadeth/hadeth_tab.dart';
 import 'package:islami_flutter/my_theme.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/app_config_provider.dart';
 
 class HadethDetailsScreen extends StatefulWidget {
   static const String routeName = 'hadeth_details_screen';
@@ -12,18 +15,27 @@ class HadethDetailsScreen extends StatefulWidget {
 class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     var args = ModalRoute.of(context)?.settings.arguments as Hadeth;
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
     return Stack(
       children: [
-        Image.asset(
-          'assets/images/main_background.png',
-          width: double.infinity,
-          height: double.infinity,
-          fit: BoxFit.fill,
-        ),
+        provider.isDark()
+            ? Image.asset(
+                'assets/images/bg_dark.png',
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.fill,
+              )
+            : Image.asset(
+                'assets/images/main_background.png',
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.fill,
+              ),
         Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
@@ -39,7 +51,9 @@ class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
               width: width * 0.9,
               height: height * 0.9,
               decoration: BoxDecoration(
-                  color: MyTheme.colorWhite,
+                  color: provider.isDark()
+                      ? MyTheme.bottomNavDarkColor
+                      : MyTheme.colorWhite,
                   borderRadius: BorderRadius.circular(24)),
               child: ListView.builder(
                 itemBuilder: (context, index) {

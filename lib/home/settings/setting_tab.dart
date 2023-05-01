@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami_flutter/home/settings/language_bottom_sheet.dart';
 import 'package:islami_flutter/home/settings/theme_bottom_sheet.dart';
+import 'package:islami_flutter/provider/app_config_provider.dart';
+import 'package:provider/provider.dart';
 
 class SettingsTab extends StatefulWidget {
   @override
@@ -11,6 +13,7 @@ class SettingsTab extends StatefulWidget {
 class _SettingsTabState extends State<SettingsTab> {
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Container(
       padding: EdgeInsets.all(12),
       margin: EdgeInsets.all(10),
@@ -34,7 +37,11 @@ class _SettingsTabState extends State<SettingsTab> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('English', style: Theme.of(context).textTheme.subtitle2),
+                  Text(
+                      provider.isEnglish()
+                          ? AppLocalizations.of(context)!.english
+                          : AppLocalizations.of(context)!.arabic,
+                      style: Theme.of(context).textTheme.headline4),
                   Icon(Icons.arrow_drop_down_sharp)
                 ],
               ),
@@ -44,7 +51,7 @@ class _SettingsTabState extends State<SettingsTab> {
             height: 15,
           ),
           Text(
-            'Theme',
+            AppLocalizations.of(context)!.theme,
             style: Theme.of(context).textTheme.subtitle1,
           ),
           InkWell(
@@ -60,7 +67,11 @@ class _SettingsTabState extends State<SettingsTab> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Light', style: Theme.of(context).textTheme.subtitle2),
+                  Text(
+                      provider.isDark()
+                          ? AppLocalizations.of(context)!.dark
+                          : AppLocalizations.of(context)!.light,
+                      style: Theme.of(context).textTheme.headline4),
                   Icon(Icons.arrow_drop_down_sharp)
                 ],
               ),
